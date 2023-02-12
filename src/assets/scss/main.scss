@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+textarea {
+    resize: none !important;
+    outline: none !important;
+}
+
+@layer initial_conf {
+    body {
+        @apply bg-gradient-to-b from-red-600 to-pink-600 bg-no-repeat min-h-screen;
+    }
+}
