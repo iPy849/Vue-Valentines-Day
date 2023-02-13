@@ -27,28 +27,34 @@
         "
         >Dedícale unas palabras:</label
       >
-      <div class="w-full">
-        <textarea
-          class="
-            form-textarea
-            block
-            w-full
-            border-none
-            ring-transparent
-            rounded
-            shadow
-          "
-          id="messageText"
-          rows="3"
-          placeholder="Escribe tu mensaje aquí..."
-          v-model="message"
-          :maxlength="maxMessageLength"
-        >
-        </textarea>
-        <p class="text-sm text-end text-white">
-          {{ message.length }}/{{ maxMessageLength }}
-        </p>
-      </div>
+      <small class="text-white block text-xs"
+        >(Escribe una pequeña dedicatoria)</small
+      >
+
+      <textarea
+        class="
+          form-textarea
+          block
+          w-full
+          border-2 border-white
+          bg-red-50/20
+          ring-transparent
+          rounded
+          shadow
+          text-white
+          mt-3
+          placeholder-white
+        "
+        id="messageText"
+        rows="5"
+        placeholder="Escribe tu mensaje aquí..."
+        v-model="message"
+        :maxlength="maxMessageLength"
+      >
+      </textarea>
+      <p class="text-sm text-end text-white">
+        {{ message.length }}/{{ maxMessageLength }}
+      </p>
 
       <label
         class="
@@ -62,18 +68,20 @@
         "
         >Selecciona una plantilla:</label
       >
-      <br />
-      <small class="text-white block md:hidden text-xs"
-        >(Toca la imagen para seleccionar una plantilla)</small
+      <small class="text-white block text-xs"
+        >(Clickea la imagen para seleccionar una plantilla)</small
       >
-      <div
-        class="flex flex-wrap flex-col md:flex-row items-center justify-center"
-      >
+      <div class="flex flex-wrap flex-row items-center justify-start">
         <div
           v-for="(tpl, index) in templateNames"
           :key="index"
-          @click="() => (template = index)"
-          class="w-full md:w-1/5 p-3 rounded"
+          @click="
+            () => {
+              template = index;
+              goToBotonGenerar();
+            }
+          "
+          class="w-1/2 md:w-1/5 p-3 rounded"
           :class="{
             'bg-white': template === index,
           }"
@@ -106,11 +114,16 @@
           focus:border-none
           p-3
           my-3
+          disabled:border-none disabled:bg-transparent disabled:text-white
         "
-        :disabled="isCorrectForm"
+        :disabled="!isCorrectForm"
         @click="generateLink"
+        ref="botonGenerar"
       >
-        Generar tarjeta
+        <span v-if="!isCorrectForm"
+          >Completa el formulario para generar la tarjeta</span
+        >
+        <span v-else>Generar tarjeta</span>
       </button>
       <p
         class="
@@ -120,14 +133,14 @@
           p-1
           text-white text-xs
         "
-        v-if="isCorrectForm"
+        v-if="!isCorrectForm"
       >
         Recuerda escribir un mensaje y escoger una plantilla para tu tarjeta
       </p>
     </form>
   </legend>
-  <div v-else class="text-red-500 bg-white mt-6 p-3 rounded">
-    <h3 class="text-xl">Aquí está el enlace para tu tarjeta:</h3>
+  <div v-else class="bg-white mt-6 p-3 rounded m-auto w-fit">
+    <h3 class="text-xl text-red-500" ref="enlace">Aquí está el enlace para tu tarjeta:</h3>
     <div
       class="
         flex
@@ -138,11 +151,12 @@
         p-3
         my-3
         rounded
+        w-fit
       "
       @click="copyToClipboard"
     >
       <img src="@/assets/img/clipboard_emoji.png" class="h-8 mr-3" />
-      <p v-if="!copyFail">Haz click para copiar el enlace a tu tarjeta</p>
+      <p v-if="!copyFail">Haz click para copiar el enlace</p>
       <p v-else>{{ link }}</p>
     </div>
   </div>
@@ -175,10 +189,17 @@ export default {
       return templates;
     },
     isCorrectForm() {
-      return this.message === "" || this.template === null;
+      return this.message !== "" && this.template !== null;
     },
   },
   methods: {
+    goToBotonGenerar() {
+      const scrollOffset = this.$refs.botonGenerar.offsetTop;
+      window.scroll({
+        top: scrollOffset - 200,
+        behavior: "smooth",
+      });
+    },
     generateLink() {
       const cipherMessage = AES.encrypt(
         this.message,
@@ -187,6 +208,14 @@ export default {
       this.link = `${window.location.host}/tpl/${
         this.template
       }?msg=${encodeURIComponent(cipherMessage)}`;
+
+      this.$nextTick(() => {
+        const scrollOffset = this.$refs.enlace.offsetTop;
+        window.scroll({
+          top: scrollOffset - 200,
+          behavior: "smooth",
+        });
+      });
     },
     copyToClipboard() {
       if (this.copyFail) return;

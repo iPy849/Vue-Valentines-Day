@@ -52,126 +52,18 @@
     </p>
     <CardFormComponent />
   </section>
-  <!-- Small blog -->
-  <section>
-    <h2 class="text-3xl font-bold text-end">
-      <img
-        src="@/assets/img/open-book_emoji.png"
-        alt=";)"
-        class="inline w-10 h-10"
-      />
-      Tantito de historia
-    </h2>
-    <div class="md:flex justify-center">
-      <div class="md:w-1/2 h-fit p-3 rounded bg-white">
-        <img
-          src="@/assets/img/friendnlove.jpg"
-          alt="friends image"
-          class="rounded"
-        />
-        <small class="text-red-500">
-          Foto de
-          <a
-            href="https://unsplash.com/@evertonvila?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-            class="underline"
-            >Everton Vila</a
-          >
-          en
-          <a
-            href="https://unsplash.com/es/fotos/AsahNlC0VhQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-            class="underline"
-            >Unsplash</a
-          >
-        </small>
-      </div>
-      <div class="md:w-1/2 md:px-3 md:mt-0 mt-3">
-        <p class="text-white md:text-lg text-start md:text-end">
-          En la actualidad, está celebración es para conmemorar cada 14 de
-          febrero el Día del Amor y la Amistad, pero pocos saben que, en
-          realidad, su nombre se debe a una celebración que recuerda al Santo de
-          Los Enamorados, es decir, a San Valentín, quien era un religioso que
-          defendía y casaba a jóvenes en la Antigua Roma en el siglo III. El 14
-          de febrero es la fecha en la que los enamorados se envían postales de
-          amor porque, según la creencia medieval de Inglaterra y Francia, ese
-          día, es decir, a mediados del segundo mes del año, todas las aves
-          escogen su pareja.
-        </p>
-        <br />
-        <a
-          href="https://historia.nationalgeographic.com.es/a/origen-historico-dia-san-valentin_15084"
-          target="_blank"
-          class="text-white md:text-lg underline text-end block"
-        >
-          Para más información lee este enlace...
-        </a>
-      </div>
-    </div>
-  </section>
-  <!-- Footer -->
-  <footer class="bg-white md:rounded">
-    <h2 class="text-3xl font-bold text-red-500">
-      Créditos
-      <img
-        src="@/assets/img/heart-hands_emoji.png"
-        alt=";)"
-        class="inline w-10 h-10"
-      />
-    </h2>
-    <div class="flex justify-center flex-col md:flex-row">
-      <div class="md:w-1/3 md:border-r-2 md:border-red-500 p-3">
-        <h3 class="text-2xl font-bold text-red-500">Algunas sugerencias:</h3>
-        <ul class="text-red-500">
-          <li class="w-16">
-            <a href="https://www.instagram.com/lavitfit.cun/" class="flex justify-start items-center">
-              <img src="@/assets/img/logos/lavitfi_cun.png" alt="Lavifit.cun Image" />
-              <p>@lavitfit.cun</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="md:w-1/3 md:border-r-2 md:border-red-500 p-3">
-        <h3 class="text-2xl font-bold text-red-500">Desarrolador:</h3>
-        <ul class="text-red-500">
-          <li>Alejandro Ortega</li>
-          <li>
-            <a href="https://twitter.com/ipy849" class="underline text-xs"
-              >Twitter: iPy849</a
-            >
-          </li>
-        </ul>
-      </div>
-      <div class="md:w-1/3 p-3">
-        <h3 class="text-2xl font-bold text-red-500">Plantillas</h3>
-        <ul class="text-red-500 list-disc ml-3">
-          <li class="underline text-xs">
-            <a href="https://codepen.io/howie23/pen/MKLroG"
-              >https://codepen.io/howie23/pen/MKLroG</a
-            >
-          </li>
-          <li class="underline text-xs">
-            <a href="https://codepen.io/THEORLAN2/pen/bEzyjQ"
-              >https://codepen.io/THEORLAN2/pen/bEzyjQ</a
-            >
-          </li>
-          <li class="underline text-xs">
-            <a href="https://codepen.io/okantiktas/pen/abbWqNL"
-              >https://codepen.io/okantiktas/pen/abbWqNL</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-
-  </footer>
-  <p class="text-white text-center p-3">Alejandro Ortega ©2023</p>
+  <SmallBlogComponent />
+  <FooterComponent />
 </template>
 
 <script>
-import CardFormComponent from "@/components/CardFormComponent.vue";
+import CardFormComponent from '@/components/home/CardFormComponent.vue';
+import FooterComponent from '@/components/home/FooterComponent.vue';
+import SmallBlogComponent from '@/components/home/SmallBlogComponent.vue';
 
 export default {
-  components: { CardFormComponent },
+  components: { 
+    CardFormComponent, FooterComponent, SmallBlogComponent },
   computed: {
     isValentineDay() {
       const date = new Date(Date.now());
@@ -181,7 +73,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @layer sections {
   section,
   footer {
