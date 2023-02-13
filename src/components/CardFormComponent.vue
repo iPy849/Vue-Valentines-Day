@@ -79,7 +79,7 @@
           }"
         >
           <img
-            :src="`src/assets/img/tpl_${index}.png`"
+            :src="`/assets/img/tpl_${index}.png`"
             :alt="`tpl_${index}`"
             class="border-2 border-white rounded shadow"
           />
