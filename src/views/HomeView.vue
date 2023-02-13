@@ -124,7 +124,7 @@
           <li class="w-16">
             <a href="https://www.instagram.com/lavitfit.cun/" class="flex justify-start items-center">
               <img src="@/assets/img/logos/lavitfi_cun.png" alt="Lavifit.cun Image" />
-              <p>lavitfit.cun</p>
+              <p>@lavitfit.cun</p>
             </a>
           </li>
         </ul>

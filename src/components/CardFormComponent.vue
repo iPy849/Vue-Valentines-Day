@@ -70,7 +70,7 @@
         class="flex flex-wrap flex-col md:flex-row items-center justify-center"
       >
         <div
-          v-for="(name, index) in templateNames"
+          v-for="(tpl, index) in templateNames"
           :key="index"
           @click="() => (template = index)"
           class="w-full md:w-1/5 p-3 rounded"
@@ -79,7 +79,7 @@
           }"
         >
           <img
-            :src="`/assets/img/tpl_${index}.png`"
+            :src="tpl.image"
             :alt="`tpl_${index}`"
             class="border-2 border-white rounded shadow"
           />
@@ -87,7 +87,7 @@
             class="text-white text-start"
             :class="{ 'text-red-500': template === index }"
           >
-            {{ name }}
+            {{ tpl.name }}
           </p>
         </div>
       </div>
@@ -113,7 +113,13 @@
         Generar tarjeta
       </button>
       <p
-        class="border-b-2 border-t-2 border-white w-fit m-auto p-1 text-white text-xs"
+        class="
+          border-b-2 border-t-2 border-white
+          w-fit
+          m-auto
+          p-1
+          text-white text-xs
+        "
         v-if="isCorrectForm"
       >
         Recuerda escribir un mensaje y escoger una plantilla para tu tarjeta
@@ -159,8 +165,12 @@ export default {
   computed: {
     templateNames() {
       const templates = [];
+      let index = 0;
       for (const key in TemplatesComponents) {
-        templates.push(key.replace("Component", ""));
+        templates.push({
+          name: key.replace("Component", ""),
+          image: `img/tpl_${index++}.png`,
+        });
       }
       return templates;
     },
