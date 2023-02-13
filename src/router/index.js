@@ -1,6 +1,9 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import VueViews from '@/views';
 import IllustrationComponents from '@/components/content';
+import AES from "crypto-js/aes";
+import EncUTF8 from "crypto-js/enc-utf8";
+
 
 const routes = [
     {
@@ -24,7 +27,12 @@ const routes = [
                 path: (i++).toString(),
                 name: key,
                 component: IllustrationComponents[key],
-                props: route => ({message: route.query.msg})
+                props: route => {
+                  const decrypted = AES.decrypt(route.query.msg, window.encryptKey);
+                  const message = decrypted.toString(EncUTF8);
+                  console.log(decrypted.toString(EncUTF8));
+                  return {message};
+                }
             });
           }
           return childrenObject;
