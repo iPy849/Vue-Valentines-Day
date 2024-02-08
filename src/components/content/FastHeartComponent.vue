@@ -413,6 +413,10 @@ export default {
   margin-top: 100px;
 }
 
+svg {
+  margin: auto;
+}
+
 .cont_corazon > hr {
   width: 300px;
 }

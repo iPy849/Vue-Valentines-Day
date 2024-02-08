@@ -30,7 +30,6 @@ const routes = [
                 props: route => {
                   const decrypted = AES.decrypt(route.query.msg, window.encryptKey);
                   const message = decrypted.toString(EncUTF8);
-                  console.log(decrypted.toString(EncUTF8));
                   return {message};
                 }
             });
