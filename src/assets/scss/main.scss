@@ -7,8 +7,21 @@ textarea {
     outline: none !important;
 }
 
-@layer initial_conf {
+@layer base {
     body {
-        @apply bg-gradient-to-b from-red-600 to-pink-600 bg-no-repeat min-h-screen;
+        @apply bg-gradient-to-b from-primary-0 to-primary-400 bg-no-repeat min-h-screen;
+    }
+
+    section {
+        & h2 {
+            @apply mt-6 text-center md:text-start;
+        }
+
+    }
+}
+
+@layer utilities {
+    section {
+        @apply p-6 m-4 bg-light-0 rounded max-w-5xl shadow;
     }
 }

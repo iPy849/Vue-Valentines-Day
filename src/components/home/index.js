@@ -1,9 +1,7 @@
-import CardFormComponent from './CardFormComponent.vue';
-import FooterComponent from './FooterComponent.vue';
-import SmallBlogComponent from './SmallBlogComponent.vue';
+import FooterComponent from '../../views/HomeView/FooterComponent.vue';
+import SmallBlogComponent from '../../views/HomeView/SmallBlogComponent.vue';
 
 module.exports = {
-    CardFormComponent,
     FooterComponent,
     SmallBlogComponent,
 };
