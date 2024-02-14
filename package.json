@@ -9,11 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@freeloop/tailwindcss-text-plugins": "^0.0.2",
     "@headlessui/vue": "^1.7.9",
-    "@meforma/vue-copy-to-clipboard": "^0.0.1",
     "crypto-js": "^4.1.1",
     "ncrypt-js": "^2.0.0",
+    "swiper": "^11.0.6",
     "vue": "^3.2.45",
+    "vue-clipboard3": "^2.0.0",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
