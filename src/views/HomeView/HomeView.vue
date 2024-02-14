@@ -15,8 +15,8 @@
         text-primary-200
       "
       >
-        <span v-if="isValentineDay">Feliz San Valentín ❤️!</span>
-        <span v-else>[Toca hacer un logo]</span>
+        <span v-if="isValentineDay">Feliz San Valentín 💌❤️!</span>
+        <span v-else>Heart Generator 💌</span>
       </h1>
     </header>
     <CardEditorComponent/>

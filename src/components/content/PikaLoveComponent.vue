@@ -5,7 +5,7 @@
 <template>
   <div class="wrapper px-10 py-20">
 
-    <h2 class="text-white">{{props.message}}</h2>
+    <h2 class="bg-white m-auto p-4 rounded-3xl shadow" style="width: fit-content">{{props.message}}</h2>
 
     <div class="pikachu">
 
